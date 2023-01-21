@@ -291,21 +291,15 @@ def driver_wait(driver, locator, by, secs=1, condition=ec.element_to_be_clickabl
     return element
 
 
-def start(name, proxy, user, wait_time):
+def start(name, proxy, wait_time):
     sync_print(f"{name} started!")
     driver = get_driver(proxy)
     driver.get(f'https://zoom.us/wc/join/'+meetingcode)
-    time.sleep(3)
-    inp = driver.find_element(By.ID, 'inputname')
-    time.sleep(1)
-    inp.send_keys(f"{user}")
-    btn2 = driver.find_element(By.ID, 'joinBtn')
+    time.sleep(15)
+    btn2 = driver.find_element(By.ID, 'btn3')
     btn2.click()
-    time.sleep(2)
-    inp2 = driver.find_element(By.ID, 'inputpasscode')
-    time.sleep(1)
-    inp2.send_keys(passcode)
-    btn3 = driver.find_element(By.ID, 'joinBtn')
+    time.sleep(20)
+    btn3 = driver.find_element(By.ID, 'btn6')
     time.sleep(1)
     btn3.click()
     sync_print(f"{name} sleep for {wait_time} seconds ...")
@@ -317,17 +311,16 @@ def main():
     wait_time = sec * 60
     workers = []
     for i in range(number):
-        fakes = fake[i]
         try:
             proxy = proxylist[i]
         except IndexError:
             proxy = None
         try:
-            user = fakes
+            proxy = None
         except IndexError:
             break
         wk = threading.Thread(target=start, args=(
-            f'[Thread{i}]', proxy, user, wait_time))
+            f'[Thread{i}]', proxy, wait_time))
         workers.append(wk)
     for wk in workers:
         wk.start()
@@ -337,7 +330,5 @@ def main():
 
 if __name__ == '__main__':
     number = int(input("Enter number of Users: "))
-    meetingcode = input("Enter meeting code (No Space): ")
-    passcode = input("Enter Password (No Space): ")
-    sec = 0.5
+    sec = 20
     main()
