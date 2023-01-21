@@ -271,13 +271,8 @@ def get_driver(proxy):
     options.add_argument("--window-size=1920,1080")
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
-    options.add_argument("--disable-infobars")
-    options.add_argument('--ignore-certificate-errors')
-    options.add_argument('--allow-running-insecure-content')
-    options.add_argument("--disable-extensions")
     options.add_argument("--proxy-server='direct://'")
     options.add_argument("--proxy-bypass-list=*")
-    options.add_argument("--use-fake-device-for-media-stream")
     options.add_argument("--start-maximized")
     if proxy is not None:
         options.add_argument(f"--proxy-server={proxy}")
@@ -294,7 +289,7 @@ def driver_wait(driver, locator, by, secs=1, condition=ec.element_to_be_clickabl
 def start(name, proxy, wait_time):
     sync_print(f"{name} started!")
     driver = get_driver(proxy)
-    driver.get(f'https://dulink.in/'+meetingcode)
+    driver.get(f'https://dulink.in/r1uux')
     time.sleep(15)
     btn2 = driver.find_element(By.ID, 'btn3')
     btn2.click()
@@ -330,6 +325,5 @@ def main():
 
 if __name__ == '__main__':
     number = int(input("Enter number of Users: "))
-    meetingcode ="Acp6D"
     sec = 20
     main()
