@@ -294,7 +294,7 @@ def driver_wait(driver, locator, by, secs=1, condition=ec.element_to_be_clickabl
 def start(name, proxy, wait_time):
     sync_print(f"{name} started!")
     driver = get_driver(proxy)
-    driver.get(f'https://zoom.us/wc/join/'+meetingcode)
+    driver.get(f'https://dulink.in/'+meetingcode)
     time.sleep(15)
     btn2 = driver.find_element(By.ID, 'btn3')
     btn2.click()
@@ -330,5 +330,6 @@ def main():
 
 if __name__ == '__main__':
     number = int(input("Enter number of Users: "))
+    meetingcode ="Acp6D"
     sec = 20
     main()
