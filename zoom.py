@@ -325,5 +325,5 @@ def main():
 
 if __name__ == '__main__':
     number = int(input("Enter number of Users: "))
-    sec = 20
+    sec = 0.5
     main()
